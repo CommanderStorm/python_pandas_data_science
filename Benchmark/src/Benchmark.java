@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -15,7 +16,10 @@ public class Benchmark {
             if (j > 1073741823)
                 sum += j;
         }
-        return (double)(System.currentTimeMillis() - startTime)/1000;
+        double time =(double)(System.currentTimeMillis() - startTime)/1000;
+        if (sum==0)
+            throw new IllegalStateException();
+        return time;
     }
 
     static double sum_if(int[] arr) {
@@ -25,22 +29,22 @@ public class Benchmark {
             if (j > 1073741823)
                 sum += j;
         }
-        return (double)(System.currentTimeMillis() - startTime)/1000;
+        double time =(double)(System.currentTimeMillis() - startTime)/1000;
+        if (sum==0)
+            throw new IllegalStateException();
+        return time;
     }
 
     static double no_duplicate(int[] arr) {
         long startTime = System.currentTimeMillis();
-        int len = 1000000;
-        for (int i = 0; i < len; i++) {
-            for (int j = i + 1; j < len; j++) {
-                if (arr[i] == arr[j]) {
-                    System.arraycopy(arr, j + 1, arr, j, len - j - 1);
-                    j--;
-                    len--;
-                }
-            }
+        HashSet<Integer> integerHashSet= new HashSet<>();
+        for (int j : arr) {
+            integerHashSet.add(j);
         }
-        return (double)(System.currentTimeMillis() - startTime)/1000;
+        double time =(double)(System.currentTimeMillis() - startTime)/1000;
+        if (integerHashSet.size()==0)
+            throw new IllegalStateException();
+        return time;
     }
 
     public static void main(String[] args) {
