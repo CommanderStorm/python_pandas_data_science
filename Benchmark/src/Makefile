@@ -2,26 +2,23 @@ CC=gcc
 CFLAGS=-Ofast -Wall -Wextra -Wpedantic -march=native -flto -fwhole-program -pedantic
 
 .PHONY: all
-all: c_benchmark python java
+all: clean java python c_benchmark
 
 
 .PHONY: c_benchmark
 c_benchmark: main.c
 	$(CC) $(CFLAGS) -o $@ $^
-	echo "C-Code:"
-	./c_benchmark
+	./c_benchmark | tee -a benchmark.csv
 
 .PHONY: clean
 clean:
-	rm -f *.o c_benchmark *.class
+	rm -f *.o c_benchmark *.class benchmark.csv
 
 .PHONY: python
 python:
-	echo "python3-Code:"
-	python3 main.py
+	python3 main.py | tee -a benchmark.csv
 
 .PHONY: java
 java:
-	echo "java-Code:"
 	javac Benchmark.java
-	java Benchmark
+	java Benchmark | tee -a benchmark.csv

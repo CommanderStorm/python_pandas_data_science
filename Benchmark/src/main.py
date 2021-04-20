@@ -1,81 +1,93 @@
 import time
-import random
+from typing import List
+
 import numpy as np
 
 
-def generate_random_list(d):
-    data = []
-    for _ in range(d):
-        data.append(random.randint(0, 2147483647))
-    return data
+def generate_random_list(list_len: int) -> List[int]:
+    return generate_random_array(list_len).tolist()
 
 
-def summarize(benchmark_data):
+def generate_random_array(list_len):
+    return np.random.randint(low=0, high=2147483647, size=list_len, dtype=np.int32)
+
+
+def summarize(benchmark_cnt):
     benchmarks = []
     for _ in range(100):
+        benchmark_data = generate_random_list(benchmark_cnt)
         start_time = time.time()
-        sum(benchmark_data)
-        benchmarks.append(time.time() - start_time)
+        s = sum(benchmark_data)
+        print(f"python_summarize,{(time.time() - start_time):.10f}")
+        if s < 0:
+            raise RuntimeError()
     return benchmarks
 
 
-def summarize_if(benchmark_data):
+def summarize_if(benchmark_cnt):
     benchmarks = []
     for _ in range(100):
+        benchmark_data = generate_random_list(benchmark_cnt)
         start_time = time.time()
-        sum(filter(lambda x: x > 1073741823, benchmark_data))
-        benchmarks.append(time.time() - start_time)
+        s = sum(filter(lambda x: x > 1073741823, benchmark_data))
+        print(f"python_summarize_if,{(time.time() - start_time):.10f}")
+        if s < 0:
+            raise RuntimeError()
     return benchmarks
 
 
-def remove_duplicates(benchmark_data):
+def no_duplicate(benchmark_cnt):
     benchmarks = []
     for _ in range(100):
+        benchmark_data = generate_random_list(benchmark_cnt)
         start_time = time.time()
-        set(benchmark_data)
-        benchmarks.append(time.time() - start_time)
+        a = set(benchmark_data)
+        print(f"python_no_duplicate,{(time.time() - start_time):.10f}")
+        if len(a) == 0:
+            raise RuntimeError()
     return benchmarks
 
 
-def np_summarize(benchmark_data):
+def np_summarize(benchmark_cnt):
     benchmarks = []
-    arr = np.array(benchmark_data, dtype=np.int32)
     for _ in range(100):
+        arr = generate_random_array(benchmark_cnt)
         start_time = time.time()
-        arr.sum()
-        benchmarks.append(time.time() - start_time)
+        s = arr.sum()
+        print(f"python_np_summarize,{(time.time() - start_time):.10f}")
+        if s < 0:
+            raise RuntimeError()
     return benchmarks
 
 
-def np_summarize_if(benchmark_data):
+def np_summarize_if(benchmark_cnt):
     benchmarks = []
-    arr = np.array(benchmark_data, dtype=np.int32)
     for _ in range(100):
+        arr = generate_random_array(benchmark_cnt)
         start_time = time.time()
-        arr[arr < 500_000].sum()
-        benchmarks.append(time.time() - start_time)
+        s = arr[arr < 500_000].sum()
+        print(f"python_np_summarize_if,{(time.time() - start_time):.10f}")
+        if s < 0:
+            raise RuntimeError()
     return benchmarks
 
 
-def np_remove_duplicates(benchmark_data):
+def np_no_duplicate(benchmark_cnt):
     benchmarks = []
-    arr = np.array(benchmark_data, dtype=np.int32)
     for _ in range(100):
+        arr = generate_random_array(benchmark_cnt)
         start_time = time.time()
-        np.unique(arr)
-        benchmarks.append(time.time() - start_time)
+        a = np.unique(arr)
+        print(f"python_np_no_duplicate,{(time.time() - start_time):.10f}")
+        if len(a) == 0:
+            raise RuntimeError()
     return benchmarks
 
 
 if __name__ == '__main__':
-    benchmark_data = generate_random_list(10_000_000)
-    long_benchmark = generate_random_list(100_000_000)
-    benchmark_times = [
-        summarize(long_benchmark),
-        np_summarize(long_benchmark),
-        summarize_if(benchmark_data),
-        np_summarize_if(benchmark_data),
-        remove_duplicates(benchmark_data),
-        np_remove_duplicates(benchmark_data)
-    ]
-    print(benchmark_times)
+    np_summarize(100_000_000)
+    summarize(100_000_000)
+    np_summarize_if(10_000_000)
+    summarize_if(10_000_000)
+    np_no_duplicate(10_000_000)
+    no_duplicate(10_000_000)
