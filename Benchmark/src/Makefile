@@ -13,6 +13,7 @@ c_benchmark: main.c
 .PHONY: clean
 clean:
 	rm -f *.o c_benchmark *.class benchmark.csv
+	echo "label,n,time [s]">benchmark.csv
 
 .PHONY: python
 python:

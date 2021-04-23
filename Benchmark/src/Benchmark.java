@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 public class Benchmark {
     static int[] generate_random_arr(int size) {
         Random r = new Random();
-        return IntStream.generate(r::nextInt).limit(size).toArray();
+        return IntStream.generate(r::nextInt).filter(x->x>=0).limit(size).toArray();
     }
 
     static double summarize(int[] arr) {
@@ -16,7 +16,7 @@ public class Benchmark {
             sum += j;
         }
         double time =(double)(System.nanoTime() - startTime)/1e+9;
-        if (sum==0)
+        if (sum<0)
             throw new IllegalStateException();
         return time;
     }
@@ -29,7 +29,7 @@ public class Benchmark {
                 sum += j;
         }
         double time =(double)(System.nanoTime() - startTime)/1e+9;
-        if (sum==0)
+        if (sum<0)
             throw new IllegalStateException();
         return time;
     }
@@ -41,26 +41,28 @@ public class Benchmark {
             integerHashSet.add(j);
         }
         double time =(double)(System.nanoTime() - startTime)/1e+9;
-        if (integerHashSet.size()==0)
+        if (integerHashSet.size()<0)
             throw new IllegalStateException();
         return time;
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            int[] long_benchmark = generate_random_arr(100000000);
-            System.out.printf("java_summarize,%.10f\n",summarize(long_benchmark));
-        }
+        for (int benchmark_cnt = 100_0000; benchmark_cnt < 10_000_000; benchmark_cnt+=100_0000) {
+            for (int i = 0; i < 20; i++) {
+                int[] long_benchmark = generate_random_arr(benchmark_cnt);
+                System.out.printf("java_summarize,%d,%.10f\n",benchmark_cnt,summarize(long_benchmark));
+            }
 
 
-        for (int i = 0; i < 100; i++) {
-            int[] benchmark_data = generate_random_arr(1000000);
-            System.out.printf("java_summarize_if,%.10f\n",summarize_if(benchmark_data));
-        }
+            for (int i = 0; i < 20; i++) {
+                int[] benchmark_data = generate_random_arr(benchmark_cnt);
+                System.out.printf("java_summarize_if,%d,%.10f\n",benchmark_cnt,summarize_if(benchmark_data));
+            }
 
-        for (int i = 0; i < 100; i++) {
-            int[] benchmark_data = generate_random_arr(1000000);
-            System.out.printf("java_no_duplicate,%.10f\n",no_duplicate(benchmark_data));
+            for (int i = 0; i < 20; i++) {
+                int[] benchmark_data = generate_random_arr(benchmark_cnt);
+                System.out.printf("java_no_duplicate,%d,%.10f\n",benchmark_cnt,no_duplicate(benchmark_data));
+            }
         }
     }
 }
