@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Ofast -Wall -Wextra -Wpedantic -march=native -flto -fwhole-program -pedantic
+CFLAGS=-O3 -Wall -Wextra -Wpedantic -pedantic -std=gnu99 -march=native -flto -fwhole-program
 
 .PHONY: all
 all: clean java python c_benchmark

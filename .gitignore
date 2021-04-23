@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+Benchmark/src/benchmark.csv
+Benchmark/src/c_benchmark
