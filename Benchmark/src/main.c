@@ -57,7 +57,7 @@ int main()
     srand(time(NULL));
     struct timespec start;
     struct timespec end;
-    for (long benchmark_cnt = 100000; benchmark_cnt < 10000000; benchmark_cnt+=100000) {
+    for (long benchmark_cnt = 10000000; benchmark_cnt < 1000000000; benchmark_cnt+=10000000) {
     for (int i = 0; i < BENCHMARK_NUM; i++) {
         int* benchmark_data = generate_random_arr(benchmark_cnt);
         clock_gettime(CLOCK_MONOTONIC, &start);
@@ -75,6 +75,8 @@ int main()
         free(benchmark_data);
     }
 /**
+
+    for (long benchmark_cnt = 100000; benchmark_cnt < 10000000; benchmark_cnt+=100000) {
     for (int i = 0; i < BENCHMARK_NUM; i++) {
         int* benchmark_data = generate_random_arr(benchmark_cnt);
         clock_gettime(CLOCK_MONOTONIC, &start);

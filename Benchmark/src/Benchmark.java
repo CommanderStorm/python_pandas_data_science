@@ -41,13 +41,13 @@ public class Benchmark {
             integerHashSet.add(j);
         }
         double time =(double)(System.nanoTime() - startTime)/1e+9;
-        if (integerHashSet.size()<0)
+        if (integerHashSet.size()==0)
             throw new IllegalStateException();
         return time;
     }
 
     public static void main(String[] args) {
-        for (int benchmark_cnt = 100_0000; benchmark_cnt < 10_000_000; benchmark_cnt+=100_0000) {
+        for (int benchmark_cnt = 10_000_000; benchmark_cnt < 1_000_000_000; benchmark_cnt+=10_000_000) {
             for (int i = 0; i < 20; i++) {
                 int[] long_benchmark = generate_random_arr(benchmark_cnt);
                 System.out.printf("java_summarize,%d,%.10f\n",benchmark_cnt,summarize(long_benchmark));
@@ -58,7 +58,8 @@ public class Benchmark {
                 int[] benchmark_data = generate_random_arr(benchmark_cnt);
                 System.out.printf("java_summarize_if,%d,%.10f\n",benchmark_cnt,summarize_if(benchmark_data));
             }
-
+        }
+        for (int benchmark_cnt = 100_000; benchmark_cnt < 10_000_000; benchmark_cnt+=100_000) {
             for (int i = 0; i < 20; i++) {
                 int[] benchmark_data = generate_random_arr(benchmark_cnt);
                 System.out.printf("java_no_duplicate,%d,%.10f\n",benchmark_cnt,no_duplicate(benchmark_data));
