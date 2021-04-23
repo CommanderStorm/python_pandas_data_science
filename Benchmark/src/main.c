@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define BENCHMARK_NUM 10
-#define BENCHMARK_REP 10000000
-#define BENCHMARK_LONG_REP 100000000
+#define BENCHMARK_NUM 20
 
 int* generate_random_arr(long size)
 {
@@ -15,30 +13,29 @@ int* generate_random_arr(long size)
     return arr;
 }
 
-void summarize(int* arr)
+void summarize(int* arr, long len)
 {
     long sum = 0;
-    for (long i = 0; i < BENCHMARK_LONG_REP; i++) {
+    for (long i = 0; i < len; i++) {
         sum += arr[i];
     }
-    if (sum == 0)
+    if (sum < 0)
         exit(EXIT_FAILURE);
 }
 
-void summarize_if(int* arr)
+void summarize_if(int* arr, long len)
 {
     long sum = 0;
-    for (long i = 0; i < BENCHMARK_REP; i++) {
+    for (long i = 0; i < len; i++) {
         if (arr[i] > 1073741823)
             sum += arr[i];
     }
-    if (sum == 0)
+    if (sum < 0)
         exit(EXIT_FAILURE);
 }
 
-void no_duplicate(int* arr)
+void no_duplicate(int* arr, long len)
 {
-    long len = BENCHMARK_REP;
     for (long i = 0; i < len; i++) {
         for (long j = i + 1; j < len; j++) {
             if (arr[i] == arr[j]) {
@@ -51,7 +48,7 @@ void no_duplicate(int* arr)
         }
     }
 
-    if (len == BENCHMARK_REP)
+    if (len < 0)
         exit(EXIT_FAILURE);
 }
 
@@ -60,28 +57,28 @@ int main()
     srand(time(NULL));
     struct timespec start;
     struct timespec end;
-    for (int benchmark_cnt = 100000; benchmark_cnt < 10000000; benchmark_cnt+=100000) {
-    for (int i = 0; i < 20; i++) {
-        int* long_benchmark = generate_random_arr(BENCHMARK_LONG_REP);
+    for (long benchmark_cnt = 100000; benchmark_cnt < 10000000; benchmark_cnt+=100000) {
+    for (int i = 0; i < BENCHMARK_NUM; i++) {
+        int* benchmark_data = generate_random_arr(benchmark_cnt);
         clock_gettime(CLOCK_MONOTONIC, &start);
-        summarize(long_benchmark);
+        summarize(benchmark_data,benchmark_cnt);
         clock_gettime(CLOCK_MONOTONIC, &end);
         printf("c_summarize,%d,%.10f\n",benchmark_cnt, (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) * 1e-9);
-        free(long_benchmark);
+        free(benchmark_data);
     }
-    for (int i = 0; i < 20; i++) {
-        int* benchmark_data = generate_random_arr(BENCHMARK_REP);
+    for (int i = 0; i < BENCHMARK_NUM; i++) {
+        int* benchmark_data = generate_random_arr(benchmark_cnt);
         clock_gettime(CLOCK_MONOTONIC, &start);
-        summarize_if(benchmark_data);
+        summarize_if(benchmark_data,benchmark_cnt);
         clock_gettime(CLOCK_MONOTONIC, &end);
         printf("c_summarize_if,%d,%.10f\n",benchmark_cnt, (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) * 1e-9);
         free(benchmark_data);
     }
 /**
-    for (int i = 0; i < 100; i++) {
-        int* benchmark_data = generate_random_arr(BENCHMARK_REP);
+    for (int i = 0; i < BENCHMARK_NUM; i++) {
+        int* benchmark_data = generate_random_arr(benchmark_cnt);
         clock_gettime(CLOCK_MONOTONIC, &start);
-        no_duplicate(benchmark_data);
+        no_duplicate(benchmark_data, benchmark_cnt);
         clock_gettime(CLOCK_MONOTONIC, &end);
         printf("c_no_duplicate,%d,%.10f\n",benchmark_cnt, (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) * 1e-9);
         free(benchmark_data);
