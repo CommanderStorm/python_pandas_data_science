@@ -19,7 +19,7 @@ def summarize(benchmark_cnt):
         start_time = time.time()
         s = sum(benchmark_data)
         print(f"python_summarize,{benchmark_cnt},{(time.time() - start_time):.10f}")
-        if s <= 0:
+        if s == 0:
             raise RuntimeError()
     return benchmarks
 
@@ -31,7 +31,7 @@ def summarize_if(benchmark_cnt):
         start_time = time.time()
         s = sum(filter(lambda x: x > 1073741823, benchmark_data))
         print(f"python_summarize_if,{benchmark_cnt},{(time.time() - start_time):.10f}")
-        if s <= 0:
+        if s == 0:
             raise RuntimeError()
     return benchmarks
 
@@ -55,7 +55,7 @@ def np_summarize(benchmark_cnt):
         start_time = time.time()
         s = arr.sum()
         print(f"python_np_summarize,{benchmark_cnt},{(time.time() - start_time):.10f}")
-        if s <= 0:
+        if s == 0:
             raise RuntimeError()
     return benchmarks
 
@@ -67,7 +67,7 @@ def np_summarize_if(benchmark_cnt):
         start_time = time.time()
         s = arr[arr < 500_000].sum()
         print(f"python_np_summarize_if,{benchmark_cnt},{(time.time() - start_time):.10f}")
-        if s <= 0:
+        if s == 0:
             raise RuntimeError()
     return benchmarks
 

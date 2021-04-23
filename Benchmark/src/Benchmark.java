@@ -16,7 +16,7 @@ public class Benchmark {
             sum += j;
         }
         double time =(double)(System.nanoTime() - startTime)/1e+9;
-        if (sum<0)
+        if (sum==0)
             throw new IllegalStateException();
         return time;
     }
@@ -29,7 +29,7 @@ public class Benchmark {
                 sum += j;
         }
         double time =(double)(System.nanoTime() - startTime)/1e+9;
-        if (sum<0)
+        if (sum==0)
             throw new IllegalStateException();
         return time;
     }
