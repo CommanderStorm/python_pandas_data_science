@@ -8,18 +8,18 @@ all: clean java python c_benchmark
 .PHONY: c_benchmark
 c_benchmark: main.c
 	$(CC) $(CFLAGS) -o $@ $^
-	./c_benchmark | tee -a benchmark.csv
+	./c_benchmark | tee -a ../../Data/benchmark.csv
 
 .PHONY: clean
 clean:
 	rm -f *.o c_benchmark *.class benchmark.csv
-	echo "label,n,time [s]">benchmark.csv
+	echo "label,n,time [s]">../../Data/benchmark.csv
 
 .PHONY: python
 python:
-	python3 main.py | tee -a benchmark.csv
+	python3 main.py | tee -a ../../Data/benchmark.csv
 
 .PHONY: java
 java:
 	javac Benchmark.java
-	java Benchmark | tee -a benchmark.csv
+	java Benchmark | tee -a ../../Data/benchmark.csv
