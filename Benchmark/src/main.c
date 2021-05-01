@@ -65,7 +65,7 @@ int main()
     srand(time(NULL));
     struct timespec start;
     struct timespec end;
-    for (int benchmark_cnt = 10000000; benchmark_cnt < 1000000000; benchmark_cnt += 10000000)
+    for (int benchmark_cnt = 25000000; benchmark_cnt < 1000000000; benchmark_cnt += 25000000)
     {
         for (int i = 0; i < BENCHMARK_NUM; i++)
         {

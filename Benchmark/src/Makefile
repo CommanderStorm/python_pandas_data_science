@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-O3 -Wall -Wextra -Wpedantic -pedantic -std=gnu99 -march=native -flto -fwhole-program
 
 .PHONY: all
-all: clean java python c_benchmark
+all: clean c_benchmark java python
 
 
 .PHONY: c_benchmark

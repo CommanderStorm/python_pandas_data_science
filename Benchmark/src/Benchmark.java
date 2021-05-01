@@ -1,6 +1,8 @@
 import java.util.Arrays;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Benchmark {
@@ -33,13 +35,11 @@ public class Benchmark {
             throw new IllegalStateException();
         return time;
     }
-
+    
     static double no_duplicate(int[] arr) {
+        List<Integer> int_list = Arrays.stream(arr).boxed().collect(Collectors.toList());
         long startTime = System.nanoTime();
-        HashSet<Integer> integerHashSet= new HashSet<>();
-        for (int j : arr) {
-            integerHashSet.add(j);
-        }
+        HashSet<Integer> integerHashSet= new HashSet<>(int_list);
         double time =(double)(System.nanoTime() - startTime)/1e+9;
         if (integerHashSet.size()==0)
             throw new IllegalStateException();
@@ -47,7 +47,7 @@ public class Benchmark {
     }
 
     public static void main(String[] args) {
-        for (int benchmark_cnt = 10_000_000; benchmark_cnt < 1_000_000_000; benchmark_cnt+=10_000_000) {
+        for (int benchmark_cnt = 25_000_000; benchmark_cnt < 1_000_000_000; benchmark_cnt+=25_000_000) {
             for (int i = 0; i < 20; i++) {
                 int[] long_benchmark = generate_random_arr(benchmark_cnt);
                 System.out.printf("java_summarize,%d,%.10f\n",benchmark_cnt,summarize(long_benchmark));
@@ -58,7 +58,7 @@ public class Benchmark {
                 int[] benchmark_data = generate_random_arr(benchmark_cnt);
                 System.out.printf("java_summarize_if,%d,%.10f\n",benchmark_cnt,summarize_if(benchmark_data));
             }
-        }
+        } 
         for (int benchmark_cnt = 100_000; benchmark_cnt < 10_000_000; benchmark_cnt+=100_000) {
             for (int i = 0; i < 20; i++) {
                 int[] benchmark_data = generate_random_arr(benchmark_cnt);

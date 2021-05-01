@@ -85,7 +85,7 @@ def np_no_duplicate(benchmark_cnt):
 
 
 if __name__ == '__main__':
-    for benchmark_cnt in range(10_000_000,1_000_000_000,10_000_000):
+    for benchmark_cnt in range(25_000_000,1_000_000_000,25_000_000):
         np_summarize(benchmark_cnt)
         summarize(benchmark_cnt)
         np_summarize_if(benchmark_cnt)
