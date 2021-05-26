@@ -13,24 +13,26 @@ def generate_random_array(list_len):
 
 
 def summarize(benchmark_cnt):
+    benchmark_cnt=int(benchmark_cnt/10)
     benchmarks = []
     for _ in range(20):
         benchmark_data = generate_random_list(benchmark_cnt)
         start_time = time.time()
         s = sum(benchmark_data)
-        print(f"python_summarize,{benchmark_cnt},{(time.time() - start_time):.10f}")
+        print(f"python_summarize,{benchmark_cnt*10},{((time.time() - start_time)*10):.10f}")
         if s == 0:
             raise RuntimeError()
     return benchmarks
 
 
 def summarize_if(benchmark_cnt):
+    benchmark_cnt=int(benchmark_cnt/10)
     benchmarks = []
     for _ in range(20):
         benchmark_data = generate_random_list(benchmark_cnt)
         start_time = time.time()
         s = sum(filter(lambda x: x > 1073741823, benchmark_data))
-        print(f"python_summarize_if,{benchmark_cnt},{(time.time() - start_time):.10f}")
+        print(f"python_summarize_if,{benchmark_cnt*10},{((time.time() - start_time)*10):.10f}")
         if s == 0:
             raise RuntimeError()
     return benchmarks
