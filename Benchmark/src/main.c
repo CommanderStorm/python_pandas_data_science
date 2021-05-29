@@ -14,7 +14,7 @@ int *generate_random_arr(int size)
     return arr;
 }
 
-void summarize(int *arr, int len)
+void summarise(int *arr, int len)
 {
     long sum = 0;
     for (int i = 0; i < len; i++)
@@ -25,7 +25,7 @@ void summarize(int *arr, int len)
         exit(EXIT_FAILURE);
 }
 
-void summarize_if(int *arr, int len)
+void summarise_if(int *arr, int len)
 {
     long sum = 0;
     for (int i = 0; i < len; i++)
@@ -71,18 +71,18 @@ int main()
         {
             int *benchmark_data = generate_random_arr(benchmark_cnt);
             clock_gettime(CLOCK_MONOTONIC, &start);
-            summarize(benchmark_data, benchmark_cnt);
+            summarise(benchmark_data, benchmark_cnt);
             clock_gettime(CLOCK_MONOTONIC, &end);
-            printf("c_summarize,%d,%.10f\n", benchmark_cnt, (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) * 1e-9);
+            printf("c_summarise,%d,%.10f\n", benchmark_cnt, (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) * 1e-9);
             free(benchmark_data);
         }
         for (int i = 0; i < BENCHMARK_NUM; i++)
         {
             int *benchmark_data = generate_random_arr(benchmark_cnt);
             clock_gettime(CLOCK_MONOTONIC, &start);
-            summarize_if(benchmark_data, benchmark_cnt);
+            summarise_if(benchmark_data, benchmark_cnt);
             clock_gettime(CLOCK_MONOTONIC, &end);
-            printf("c_summarize_if,%d,%.10f\n", benchmark_cnt, (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) * 1e-9);
+            printf("c_summarise_if,%d,%.10f\n", benchmark_cnt, (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) * 1e-9);
             free(benchmark_data);
         }
     }

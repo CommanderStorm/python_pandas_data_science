@@ -11,7 +11,7 @@ public class Benchmark {
         return IntStream.generate(r::nextInt).filter(x->x>=0).limit(size).toArray();
     }
 
-    static double summarize(int[] arr) {
+    static double summarise(int[] arr) {
         long startTime = System.nanoTime();
         long sum = 0;
         for (int j : arr) {
@@ -23,7 +23,7 @@ public class Benchmark {
         return time;
     }
 
-    static double summarize_if(int[] arr) {
+    static double summarise_if(int[] arr) {
         long startTime = System.nanoTime();
         long sum = 0;
         for (int j : arr) {
@@ -50,13 +50,13 @@ public class Benchmark {
         for (int benchmark_cnt = 25_000_000; benchmark_cnt < 1_000_000_000; benchmark_cnt+=25_000_000) {
             for (int i = 0; i < 20; i++) {
                 int[] long_benchmark = generate_random_arr(benchmark_cnt);
-                System.out.printf("java_summarize,%d,%.10f\n",benchmark_cnt,summarize(long_benchmark));
+                System.out.printf("java_summarise,%d,%.10f\n",benchmark_cnt,summarise(long_benchmark));
             }
 
 
             for (int i = 0; i < 20; i++) {
                 int[] benchmark_data = generate_random_arr(benchmark_cnt);
-                System.out.printf("java_summarize_if,%d,%.10f\n",benchmark_cnt,summarize_if(benchmark_data));
+                System.out.printf("java_summarise_if,%d,%.10f\n",benchmark_cnt,summarise_if(benchmark_data));
             }
         } 
         for (int benchmark_cnt = 100_000; benchmark_cnt < 10_000_000; benchmark_cnt+=100_000) {
