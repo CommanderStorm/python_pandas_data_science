@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Benchmark/Benchmark.iml" filepath="$PROJECT_DIR$/Benchmark/Benchmark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/python-pandas-data-science.iml" filepath="$PROJECT_DIR$/.idea/python-pandas-data-science.iml" />
     </modules>
   </component>
 </project>
