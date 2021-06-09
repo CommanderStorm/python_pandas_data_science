@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 1,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -15,8 +15,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Software: Python and Data Analytics \n",
+    "<h1 style=\"font-size:4em\">Software: Python and Data Analytics </h1>\n",
     "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n",
+    "<br><br><br><br>\n",
     "<br><br><br><br>\n",
     "<br><br><br><br>\n",
     "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
@@ -26,13 +27,15 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Software: Python and Data Analytics \n",
-    "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n",
-    "Goals:\n",
-    "- WHY Python?\n",
-    "- Pythons Syntax\n",
-    "- Data Analytics and Pandas\n",
-    "- Visualisations and Plotly\n",
+    "<h1 style=\"font-size:4em\">Software: Python and Data Analytics </h1>\n",
+    "<br><br><br><br><br><br><br><br><br><br><br><br>\n",
+    "<p style=\"font-size:2em\">Goals:</p>\n",
+    "<ul>\n",
+    "<li style=\"font-size:2em\">WHY Python?</li>\n",
+    "<li style=\"font-size:2em\">Pythons Syntax</li>\n",
+    "<li style=\"font-size:2em\">Data Analytics and Pandas</li>\n",
+    "<li style=\"font-size:2em\">Visualisations and Plotly</li>\n",
+    "</ul>\n",
     "<br><br><br><br>\n",
     "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
    ]
@@ -41,7 +44,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## WHY Python?\n",
+    "<h1 style=\"font-size:3em\">WHY Python?</h1>\n",
     "<br/>\n",
     "<img src=\"images/most_loved.png\" widh=\"100%\"/>\n",
     "source: https://insights.stackoverflow.com/survey/2020\n",
@@ -53,7 +56,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## WHY Python?\n",
+    "<h1 style=\"font-size:3em\">WHY Python?</h1>\n",
     "<br/>\n",
     "<img src=\"images/most_wanted.png\" widh=\"100%\"/>\n",
     "source: https://insights.stackoverflow.com/survey/2020\n",
@@ -65,14 +68,14 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Python as an interpreted language\n",
-    "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n",
+    "<h1 style=\"font-size:3em\">Python as an interpreted language</h1>\n",
+    "<br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n",
     "<ul>\n",
-    "<li>Python-Code is translated to bytecode</li>\n",
-    "<li>Bytecode execution is slow, but eazy to get right</li>\n",
-    "<li>Bytecode can call any external library</li>\n",
+    "<li style=\"font-size:2em\">Python-Code is translated to bytecode</li>\n",
+    "<li style=\"font-size:2em\">Bytecode execution is slow, but eazy to get right</li>\n",
+    "<li style=\"font-size:2em\">Bytecode can call any external library</li>\n",
     "</ul>\n",
-    "<br><br><br><br>\n",
+    "<br><br><br><br><br>\n",
     "<br><br><br><br>\n",
     "<br><br><br><br>\n",
     "<br><br><br><br>"
@@ -82,7 +85,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Pythons Performance\n",
+    "<h1 style=\"font-size:3em\">Pythons Performance</h1>\n",
     "<img src=\"images/summarise_if.svg\" height=\"750em\"/>"
    ]
   },
@@ -90,100 +93,31 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Pythons' Syntax\n",
-    "## strings, integers, comparisons and variables"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "arg = \"string\"\n",
-    "j = 3 >= 2 # True\n",
-    "j = None\n",
-    "i = 1"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "## methods, aruments and keyword-arguments"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def foo(arg, kwarg=42):\n",
-    "    if arg:\n",
-    "        return arg"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "## lists"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "list1 = [1, \"2.0\"]\n",
-    "i = list1[1] # \"2.0\""
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "# Pythons' Syntax\n",
-    "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n",
-    "## TLDR: \n",
-    "- unnessesary syntax is removed, \n",
-    "- keywordarguments exist\n",
-    "- lists are brackets\n",
-    "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>\n",
-    "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "# Pandas for Data Analytics \n",
-    "## WHY Pandas?\n",
+    "<h1 style=\"font-size:4em\">Pandas for Data Analytics</h1>\n",
+    "<h1 style=\"font-size:3em\">WHY Pandas?</h1>\n",
     "<br/>\n",
     "<div style=\"float: left;width: 50%\">\n",
     "<ul>\n",
-    "<li>Fast</li>\n",
-    "<li>Expresive</li>\n",
-    "<li>Feature-rich</li>\n",
-    "<li>Great documentation</li>\n",
-    "<li>Supported by most plotting librarys</li>\n",
+    "<li style=\"font-size:2em\">Fast</li>\n",
+    "<li style=\"font-size:2em\">Expresive</li>\n",
+    "<li style=\"font-size:2em\">Feature-rich</li>\n",
+    "<li style=\"font-size:2em\">Great documentation</li>\n",
+    "<li style=\"font-size:2em\">Supported by most plotting librarys</li>\n",
     "</ul>\n",
     "<br/>\n",
-    "<blockquote>\n",
+    "<blockquote style=\"font-size:2em\">\n",
     "\"Every other library in this field has much bigger issues than Pandas. [...] There are several more similar libraries [...], but none of them can be competitive to Pandas, for now.\"\n",
     "</blockquote>\n",
-    "<blockquote>Stančin et al. 2019</blockquote>\n",
+    "<blockquote>[Stančin et al. 2019, \"An overview and comparison of free Python libraries for data mining and big data analysis\"]</blockquote>\n",
     "</div>\n",
-    "<img style=\"margin-left:50%;float: right; margin-left:0\" src=\"images/cute-panda-meme.jpg\" height=\"700em\"/>"
+    "<img style=\"margin-left:50%;float: right; margin-left:0\" src=\"images/cute-panda-meme.jpg\" height=\"650em\"/>"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Pandas Data Model\n",
+    "<h1 style=\"font-size:3em\">Pandas Data Model</h1>\n",
     "<img src=\"images/dataframe.svg\" height=\"700em\"/>"
    ]
   },
@@ -294,13 +228,15 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Data Visualisation\n",
-    "## Why plotly?\n",
-    "\n",
-    "- Pretty graphs\n",
-    "- Eazy to lern API\n",
-    "- Great documentation\n",
-    "- Provides all the visualisations one would need"
+    "<h1 style=\"font-size:4em\">Data Visualisation</h1>\n",
+    "<h1 style=\"font-size:3em\">WHY Plotly?</h1>\n",
+    "<br/>\n",
+    "<ul>\n",
+    "<li style=\"font-size:2em\">Pretty graphs</li>\n",
+    "<li style=\"font-size:2em\">Eazy to lern API</li>\n",
+    "<li style=\"font-size:2em\">Great documentation</li>\n",
+    "<li style=\"font-size:2em\">Provides all the visualisations one would need</li>\n",
+    "</ul>"
    ]
   },
   {
@@ -424,8 +360,16 @@
    "name": "pythonjvsc74a57bd088754a2527441b37fbce28f1b9818606274a057277bf8f72c6fe12de23e344e5"
   },
   "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
    "name": "python",
-   "version": ""
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.6"
   },
   "metadata": {
    "interpreter": {
